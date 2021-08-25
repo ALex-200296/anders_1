@@ -7,15 +7,15 @@ import { useEffect } from "react";
 let time;
 
 const useSearch = () => {
-  const [word, setWord] = useState('');
+  const [search, setWord] = useState('');
   const dispatch = useDispatch();
 
   useEffect(() => {
     clearTimeout(time);
     time = setTimeout(() => {
-      dispatch(beersSearch(word, 1, 25));
+      dispatch(beersSearch(search, 1, 25));
     }, 2000);
-  }, [word])
+  }, [search])
 
   const handlerSearch = e => {
     dispatch({type:BEERS_FILTER_NULL});
@@ -23,7 +23,7 @@ const useSearch = () => {
   }
 
   return {
-    word, 
+    search, 
     handlerSearch,
   }
 }

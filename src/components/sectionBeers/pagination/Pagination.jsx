@@ -11,6 +11,7 @@ const Pagination = () => {
   } = useApi();
   const { page, perPage } = useSelector( state => state.details);
 
+  console.log(`page: ${perPage}`)
   return (
     <div className={styles.pagination}>
       <button 
@@ -20,7 +21,7 @@ const Pagination = () => {
       >
         &lt; 	&lt; 	&lt;
       </button>
-      <select onChange={handlePerPage} className={styles.select}>
+      <select value={perPage} onChange={handlePerPage} className={styles.select}>
         <option value="25" defaultValue>25</option>
         <option value="30">30</option>
         <option value="40">40</option>

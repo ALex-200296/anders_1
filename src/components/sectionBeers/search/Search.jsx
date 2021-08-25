@@ -3,7 +3,7 @@ import useSearch from '../../../hooks/useSearch';
 import styles from './search.module.scss';
 
 const Search = () => {
-  const { word, handlerSearch } = useSearch();
+  const { search, handlerSearch } = useSearch();
   return (
     <>
       <div className={styles.search}>
@@ -13,7 +13,7 @@ const Search = () => {
           </span>
           <input 
           type="text" 
-          value={word}
+          value={search}
           onChange={e => handlerSearch(e)}
           className={styles.input}
           />

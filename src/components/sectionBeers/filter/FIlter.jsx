@@ -4,6 +4,8 @@ import { fetchBeersFilter } from '../../../store/action-creactors/beers';
 import { BEERS_FILTER } from '../../../store/types/beers';
 import styles from './filter.module.scss';
 
+import filter_obj from '../../../lib/filter_obj';
+
 
 const Filter = () => {
 const [data, setData] = useState({});
@@ -24,11 +26,8 @@ const handlerInput = (e) => {
 
 const handlerSubmit = (e) => {
   e.preventDefault();
-  console.log(e)
-  const filterData = data;
-
-  clean(filterData);
-
+  const filterData = filter_obj(data);
+  
   if(Object.keys(filterData).length !== 0) {
     dispath({type: BEERS_FILTER, filter: filterData});
     dispath(fetchBeersFilter(filterData, 1, 25));
@@ -36,14 +35,6 @@ const handlerSubmit = (e) => {
 
   formRef.current.reset();
   setData({});
-}
-
-function clean(obj) {
-  for (let propName in obj) { 
-    if (obj[propName] === null || obj[propName] === undefined || obj[propName] === '') {
-      delete obj[propName];
-    }
-  }
 }
 
 return (
