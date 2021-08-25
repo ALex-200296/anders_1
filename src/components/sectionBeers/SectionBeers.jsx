@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './sectionBeers.module.scss';
+// import styles from './sectionBeers.module.scss';
 
 import Search from './search/Search';
 import Pagination from './pagination/Pagination';

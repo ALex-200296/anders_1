@@ -1,41 +1,27 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchBeersFilter } from '../../../store/action-creactors/beers';
-import { BEERS_FILTER } from '../../../store/types/beers';
+import React, { useRef } from 'react';
 import styles from './filter.module.scss';
 
-import filter_obj from '../../../lib/filter_obj';
+import { useFilter } from '../../../hooks/useFilter';
 
+const groupInput = [
+  { id: '1', type: 'number', name: 'abv_gt', symbol: '>' },
+  { id: '2', type: 'number', name: 'abv_lt', symbol: '<' },
+  { id: '3', type: 'number', name: 'ibu_gt', symbol: '>' },
+  { id: '4', type: 'number', name: 'ibu_lt', symbol: '<' },
+  { id: '5', type: 'number', name: 'ebc_gt', symbol: '>' },
+  { id: '6', type: 'number', name: 'ebc_lt', symbol: '<' },
+  { id: '7', type: 'string', name: 'yeast' },
+  { id: '8', type: 'date', name: 'brewed_before' },
+  { id: '9', type: 'date', name: 'brewed_after' },
+  { id: '10', type: 'string', name: 'hops' },
+  { id: '11', type: 'string', name: 'malt' },
+  { id: '12', type: 'string', name: 'food' },
+  { id: '13', type: 'string', name: 'ids' },
+]
 
 const Filter = () => {
-const [data, setData] = useState({});
-const { search } = useSelector( state => state.details);
-const dispath = useDispatch();
-const formRef = useRef(null);
-
-useEffect(() => {
-  formRef.current.reset();
-}, [search])
-
-const handlerInput = (e) => {
-  setData({
-    ...data,
-    [e.target.name]: e.target.value
-  })
-}
-
-const handlerSubmit = (e) => {
-  e.preventDefault();
-  const filterData = filter_obj(data);
-  
-  if(Object.keys(filterData).length !== 0) {
-    dispath({type: BEERS_FILTER, filter: filterData});
-    dispath(fetchBeersFilter(filterData, 1, 25));
-  }
-
-  formRef.current.reset();
-  setData({});
-}
+  const formRef = useRef(null);
+  const { handlerInput, handlerSubmit } = useFilter(formRef);
 
 return (
 <div className={styles.filter}>
@@ -44,58 +30,16 @@ return (
       Фильтр
     </h2>
     <div className={styles.inputGroup}>
-      <label htmlFor="abv_gt" className={styles.label}>
-        <span className={styles}>Крепость &gt;</span>
-      </label>
-      <input id="abv_gt" className={styles.input} onChange={e=> handlerInput(e)} type="number" name="abv_gt"/>
-      <label htmlFor="abv_lt" className={styles.label}>
-        <span className={styles}>Крепость &lt;</span>
-      </label>
-      <input id="abv_lt" className={styles.input} onChange={e=> handlerInput(e)} type="number" name="abv_lt"/>
-      <label htmlFor="mom_gt" className={styles.label}>
-        <span className={styles}>IBU &gt;</span>
-      </label>
-      <input id="mom_gt" className={styles.input} onChange={e=> handlerInput(e)} type="number" name="mom_gt"/>
-      <label htmlFor="ibu_lt" className={styles.label}>
-        <span className={styles}>IBU &lt;</span>
-      </label>
-      <input id="ibu_lt" className={styles.input} onChange={e=> handlerInput(e)} type="number" name="ibu_lt"/>
-      <label htmlFor="ebc_gt" className={styles.label}>
-        <span className={styles}>EBC &gt;</span>
-      </label>
-      <input id="ebc_gt" className={styles.input} onChange={e=> handlerInput(e)} type="number" name="ebc_gt "/>
-      <label htmlFor="ebc_lt" className={styles.label}>
-        <span className={styles}>EBC &lt;</span>
-      </label>
-      <input id="ebc_lt" className={styles.input} onChange={e=> handlerInput(e)} type="number" name="ebc_lt"/>
-      <label htmlFor="yeast" className={styles.label}>
-        <span className={styles}>Yeast</span>
-      </label>
-      <input id="yeast" className={styles.input} onChange={e=> handlerInput(e)} type="string" name="yeast"/>
-      <label htmlFor="brewed_before" className={styles.label}>
-        <span className={styles}>Brewed before</span>
-      </label>
-      <input id="brewed_before" className={styles.input} onChange={e=> handlerInput(e)} type="date" name="brewed_before"/>
-      <label htmlFor="brewed_after" className={styles.label}>
-        <span className={styles}>Brewed after</span>
-      </label>
-      <input id="brewed_after" className={styles.input} onChange={e=> handlerInput(e)} type="date" name="brewed_after"/>
-      <label htmlFor="hops" className={styles.label}>
-        <span className={styles}>Hops</span>
-      </label>
-      <input id="hops" className={styles.input} onChange={e=> handlerInput(e)} type="string" name="hops"/>
-      <label htmlFor="malt" className={styles.label}>
-        <span className={styles}>Malt</span>
-      </label>
-      <input id="malt" className={styles.input} onChange={e=> handlerInput(e)} type="string" name="malt"/>
-      <label htmlFor="food" className={styles.label}>
-        <span className={styles}>Food</span>
-      </label>
-      <input id="food" className={styles.input} onChange={e=> handlerInput(e)} type="string" name="food"/>
-      <label htmlFor="ids" className={styles.label}>
-        <span className={styles}>ID</span>
-      </label>
-      <input id="ids" className={styles.input} onChange={e=> handlerInput(e)} type="string" name="ids"/>
+      {groupInput.map( props => (
+        <React.Fragment key={props.id}>
+          <label htmlFor={props.name} className={styles.label}>
+            <span className={styles.span}>
+              {props.name} {!!props.symbol && props.symbol}
+            </span>
+          </label>
+          <input id={props.name} className={styles.input} onChange={e=> handlerInput(e)} type={props.type} name={props.name}/>
+        </React.Fragment>
+      ))}
     </div>
     <button className={styles.btn}>
       Получить

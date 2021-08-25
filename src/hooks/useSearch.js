@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { BEERS_FILTER_NULL, BEERS_FIRST_LETTER } from "../store/types/beers";
+import { useDispatch } from "react-redux";
+import { BEERS_FILTER_NULL } from "../store/types/beers";
 import { beersSearch } from '../store/action-creactors/beerDetails';
 import { useEffect } from "react";
 

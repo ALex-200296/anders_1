@@ -1,11 +1,18 @@
-import { BEERS_FILTER, BEERS_FILTER_NULL, BEERS_FIRST_LETTER, BEERS_PAGE_LAST, BEERS_PAGE_NEXT, BEERS_PAGE_SEARCH, BEERS_PER_PAGE } from "../types/beers"
+import { 
+  BEERS_FILTER, 
+  BEERS_FILTER_NULL, 
+  BEERS_PAGE_LAST, 
+  BEERS_PAGE_NEXT, 
+  BEERS_PAGE_SEARCH, 
+  BEERS_PER_PAGE 
+} from "../types/beers";
 
 const initialState = {
   page: 1,
   perPage: 25,
   search: '',
   filter: {},
-}
+};
 
 export const beersDetailsReducer = (state = initialState, action) => {
   switch(action.type) {

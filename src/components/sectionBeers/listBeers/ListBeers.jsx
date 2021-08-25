@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import styles from './listBeers.module.scss';
 
-import { fetchBeers } from '../../../store/action-creactors/beers';
 import Loading from '../../../components/loading/Loading';
 import ItemBeers from './itemBeers/ItemBeers';
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import useApi from '../../../hooks/useApi';
 import styles from './pagination.module.scss';
@@ -11,7 +11,6 @@ const Pagination = () => {
   } = useApi();
   const { page, perPage } = useSelector( state => state.details);
 
-  console.log(`page: ${perPage}`)
   return (
     <div className={styles.pagination}>
       <button 
