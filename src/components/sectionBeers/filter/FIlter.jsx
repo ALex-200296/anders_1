@@ -24,28 +24,30 @@ const Filter = () => {
   const { handlerInput, handlerSubmit } = useFilter(formRef);
 
 return (
-<div className={styles.filter}>
-  <form ref={formRef} className={styles.form} onSubmit={ e=> handlerSubmit(e)}>
-    <h2 className={styles.title}>
-      Фильтр
-    </h2>
-    <div className={styles.inputGroup}>
-      {groupInput.map( props => (
-        <React.Fragment key={props.id}>
-          <label htmlFor={props.name} className={styles.label}>
-            <span className={styles.span}>
-              {props.name} {!!props.symbol && props.symbol}
-            </span>
-          </label>
-          <input id={props.name} className={styles.input} onChange={e=> handlerInput(e)} type={props.type} name={props.name}/>
-        </React.Fragment>
-      ))}
-    </div>
-    <button className={styles.btn}>
-      Получить
-    </button>
-  </form>
-</div>
+  <div className={styles.filter}>
+    <form ref={formRef} className={styles.form} onSubmit={ e=> handlerSubmit(e)}>
+      <h2 className={styles.title}>
+        Фильтр
+      </h2>
+      <div className={styles.inputGroup}>
+        {groupInput.map( props => (
+          <React.Fragment key={props.id}>
+            <div className={styles.wrap}>
+              <label htmlFor={props.name} className={styles.label}>
+                <span className={styles.span}>
+                  {props.name} {!!props.symbol && props.symbol}
+                </span>
+              </label>
+            <input id={props.name} className={styles.input} onChange={e=> handlerInput(e)} type={props.type} name={props.name}/>
+            </div>
+          </React.Fragment>
+        ))}
+      </div>
+      <button className={styles.btn}>
+        Получить
+      </button>
+    </form>
+  </div>
 )
 }
 
