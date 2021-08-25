@@ -1,0 +1,48 @@
+.form {
+  width: 100%;
+  text-align: center;
+
+  background-color: #F4D9D9;
+  border-radius: 10px;
+}
+
+.title {
+  text-align: center;
+}
+
+.inputGroup {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.label {
+  width: 100%;
+  margin: 5px 0;
+
+  text-align: center;
+}
+
+.input {
+  width: 80%;
+  padding: 5px 10px;
+
+  border: none;
+  border-radius: 5px;
+}
+
+.btn {
+  margin: 10px 0;
+  padding: 10px 30%;
+
+  border: none;
+  border-radius: 5px;
+  background-color: #95A6F2;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background-color: #7289EE;
+    color: white;
+  }  
+}

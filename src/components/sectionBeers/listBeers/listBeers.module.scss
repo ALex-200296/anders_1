@@ -1,0 +1,18 @@
+.list  {
+  min-height: 100px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+
+  border-radius: 10px;
+}
+
+.loading {
+  min-height: 100px;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
