@@ -6,7 +6,7 @@ import { fetchBeersSearch, fetchBeers, fetchBeersFilter } from '../store/action-
 import { BEERS_PAGE_LAST, BEERS_PAGE_NEXT } from "../store/types/beers";
 import { beersPerPage } from '../store/action-creactors/beerDetails';
 
-const useApi = () => {
+const useApi = () => { // useApi - слишком общее название, у нас тут скорее useBeers
   const  { 
     page, 
     perPage, 

@@ -25,13 +25,13 @@ const Filter = () => {
 
 return (
   <div className={styles.filter}>
-    <form ref={formRef} className={styles.form} onSubmit={ e=> handlerSubmit(e)}>
+    <form ref={formRef} className={styles.form} onSubmit={ e=> handlerSubmit(e)}> {/* тут можно просто onSubmit={handlerSubmit} */}
       <h2 className={styles.title}>
         Фильтр
       </h2>
       <div className={styles.inputGroup}>
         {groupInput.map( props => (
-          <React.Fragment key={props.id}>
+          <React.Fragment key={props.id}> {/* тут тоже фрагмент лишний, можно сразу на див key вешать.  */}
             <div className={styles.wrap}>
               <label htmlFor={props.name} className={styles.label}>
                 <span className={styles.span}>
