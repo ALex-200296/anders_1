@@ -5,7 +5,7 @@ import styles from './search.module.scss';
 const Search = () => {
   const { search, handlerSearch } = useSearch();
   return (
-    <>
+    <> {/* Фрагмент тут лишний */}
       <div className={styles.search}>
         <label>
           <span className={styles.text}>
@@ -14,7 +14,7 @@ const Search = () => {
           <input 
           type="text" 
           value={search}
-          onChange={e => handlerSearch(e)}
+          onChange={e => handlerSearch(e)} // можно просто onChange={handlerSearch}
           className={styles.input}
           />
         </label>

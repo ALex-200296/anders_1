@@ -5,6 +5,11 @@ import { beersSearch } from '../store/action-creactors/beerDetails';
 import { useEffect } from "react";
 
 let time;
+// нельзя использовать вот так вот переменные для дебоунса. 
+// Если у тебя этот хук одновременно будет использоваться в 2 местах, 
+// то каждый из хуков будет перезаписывать эту переменную. 
+// Можешь вместо создания переменной попробовать useRef использовать в хуке
+
 
 const useSearch = () => {
   const [search, setWord] = useState('');

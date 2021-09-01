@@ -16,7 +16,7 @@ const Pagination = () => {
       <button 
       className={styles.button}
       onClick={handlerPageLast}
-      disabled={page <= 1 ? true : false}
+        disabled={page <= 1 ? true : false} /* тут можно просто disabled={page <= 1} */
       >
         &lt; 	&lt; 	&lt;
       </button>
